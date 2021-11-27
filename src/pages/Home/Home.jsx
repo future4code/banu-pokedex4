@@ -33,12 +33,12 @@ export default function Home() {
   return (
     <div>
       <h1>HOME</h1>
-      <select onChange={changePokeName}>
+      <input onChange={changePokeName}/>
       <option value={""}> Nenhum</option>
       {pokemons.map((pokemon) => (
         <option value={pokemon.name}>{pokemon.name}</option>
       ))}
-      </select>
+      
       {pokeName && <CardHome pokeName={pokeName}/>}
     </div>
   );
