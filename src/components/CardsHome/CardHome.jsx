@@ -48,5 +48,6 @@ useEffect(() => {
         
       )}
       <button onClick={onClickShiny}>Shiny</button>
+      <button onClick={props.trocaTela}>Ir para Pokedex</button>
   </div>;
 }

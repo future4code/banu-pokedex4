@@ -1,5 +1,6 @@
 import React from "react";
 import CardHome from "../../components/CardsHome/CardHome";
+import Pokedex from "../../pages/Pokedex/Pokedex";
 import axios from "axios";
 import {useState, useEffect} from "react";
 
@@ -7,6 +8,9 @@ import {useState, useEffect} from "react";
 export default function Home() {
   const [pokemons, setPokemons] = useState([])
   const [pokeName, setPokeName] = useState("")
+  const [gerenciarTela, setGerenciarTela] = useState(true);
+
+  
 
   useEffect (() => {
       axios
@@ -25,6 +29,10 @@ export default function Home() {
     setPokeName(e.target.value)
   };
 
+  const trocaTela = () => {
+    setGerenciarTela(!gerenciarTela);
+  };
+
 
 
 
@@ -33,13 +41,18 @@ export default function Home() {
   return (
     <div>
       <h1>HOME</h1>
-      <input onChange={changePokeName}/>
+      <select onChange={changePokeName}>
       <option value={""}> Nenhum</option>
       {pokemons.map((pokemon) => (
         <option value={pokemon.name}>{pokemon.name}</option>
       ))}
-      
+      </select>
       {pokeName && <CardHome pokeName={pokeName}/>}
+      {gerenciarTela ? (
+        <CardHome trocaTela={trocaTela} />
+      ) : (
+        <Pokedex trocaTela={trocaTela} />
+      )}
     </div>
   );
 }
