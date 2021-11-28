@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { PokeListContainer } from "./styled";
 
 export default function Pokedex() {
+  const { pokedex } = useContext(GlobalStateContext);
+
+
   return (
-    <div>
-      <h1>POKEDEX</h1>
-    </div>
+    <>
+     <Header
+        title={"Pokédex"}
+    />
+      <PokeListContainer>
+        {pokedex &&
+          pokedex.map((poke) => {
+            return <PokemonCard isPokedex key={poke.name} poke={poke} />;
+          })}
+      </PokeListContainer>
+    </>
   );
 }
